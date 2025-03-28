@@ -16,7 +16,6 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,9 +41,11 @@ public final class OmegaConfig {
         }
         PlayerEvent.PLAYER_JOIN.register(serverPlayer -> {
             var server = serverPlayer.server;
-            if (server instanceof IntegratedServer integratedServer && !integratedServer.isRemote()) {
-                return; // do not sync config in an integrated server, unless it's open to connections
+            //check if server is open to connections (true in dedicated servers, or checks if integratedserver is open to lan connections)
+            if (!server.isRemote()) {
+                return;
             }
+
             server.execute(() -> {
                 NbtCompound root = new NbtCompound();
                 NbtList configurations = new NbtList();
