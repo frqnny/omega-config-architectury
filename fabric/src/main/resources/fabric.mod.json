@@ -3,17 +3,16 @@
   "id": "omegaconfig",
   "version": "${version}",
   "name": "Omega Config Architectury",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "A lightweight configuration library by Draylar and Frqnny",
   "authors": [
-    "Me!"
+    "Frqnny",
+    "Draylar"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/frqnny/omega-config-architectury",
+    "sources": "https://github.com/frqnny/omega-config-architectury"
   },
-  "license": "LICENSE",
-  "icon": "assets/omega-config/icon.png",
-  "environment": "*",
+  "license": "MIT",
   "entrypoints": {
     "main": [
       "io.github.frqnny.omegaconfig.fabric.OmegaConfigFabric"
@@ -23,10 +22,10 @@
     ]
   },
   "depends": {
-    "fabricloader": ">=0.15.11",
-    "minecraft": ">=1.21",
+    "fabricloader": ">=0.16.10",
+    "minecraft": ">=1.21.5",
     "java": ">=21",
-    "architectury": ">=13.0.2",
+    "architectury": ">=16.0.3",
     "fabric-api": "*"
   }
 }

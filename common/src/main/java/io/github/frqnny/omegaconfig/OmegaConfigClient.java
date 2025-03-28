@@ -6,7 +6,6 @@ import io.github.frqnny.omegaconfig.api.Config;
 import io.github.frqnny.omegaconfig.api.Syncing;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 
 import java.lang.reflect.Field;
@@ -26,12 +25,12 @@ public class OmegaConfigClient {
 
             MinecraftClient.getInstance().execute(() -> {
                 if (tag != null && tag.contains("Configurations")) {
-                    NbtList list = tag.getList("Configurations", NbtElement.COMPOUND_TYPE);
+                    NbtList list = tag.getList("Configurations").orElseGet(NbtList::new);
                     list.forEach(compound -> {
                         NbtCompound syncedConfiguration = (NbtCompound) compound;
-                        String name = syncedConfiguration.getString("ConfigName");
-                        String json = syncedConfiguration.getString("Serialized");
-                        boolean allSync = syncedConfiguration.getBoolean("AllSync");
+                        String name = syncedConfiguration.getString("ConfigName", "FailedToDeserializeConfigName");
+                        String json = syncedConfiguration.getString("Serialized", "");
+                        boolean allSync = syncedConfiguration.getBoolean("AllSync", false);
 
                         // find configuration class by name
                         for (Config config : OmegaConfig.getRegisteredConfigurations()) {
