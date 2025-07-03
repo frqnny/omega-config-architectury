@@ -15,20 +15,20 @@ Lightweight config library
 [[dependencies.omega-config]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.5,)"
+versionRange = "[21.7,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.omega-config]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.5,)"
+versionRange = "[1.21.7,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.omega-config]]
 modId = "architectury"
 type = "required"
-versionRange = "[16.0.3,)"
+versionRange = "[17.0.6,)"
 ordering = "AFTER"
 side = "BOTH"

@@ -40,7 +40,8 @@ public final class OmegaConfig {
             NetworkManager.registerS2CPayloadType(SyncConfigPayload.ID, SyncConfigPayload.CODEC);
         }
         PlayerEvent.PLAYER_JOIN.register(serverPlayer -> {
-            var server = serverPlayer.server;
+            var server = serverPlayer.getServer();
+
             //check if server is open to connections (true in dedicated servers, or checks if integratedserver is open to lan connections)
             if (!server.isRemote()) {
                 return;
@@ -92,8 +93,8 @@ public final class OmegaConfig {
                     REGISTERED_CONFIGURATIONS.add(object);
                     return object;
                 } catch (Exception e) {
-                    LOGGER.error(String.format("Encountered an error while reading %s config, falling back to default values.", config.getName()));
-                    LOGGER.error(String.format("If this problem persists, delete the config file %s and try again.", config.getName() + "." + config.getExtension()), e);
+                    LOGGER.error("Encountered an error while reading {} config, falling back to default values.", config.getName());
+                    LOGGER.error("If this problem persists, delete the config file {} and try again.", config.getName() + "." + config.getExtension(), e);
                 }
             }
 
@@ -162,7 +163,7 @@ public final class OmegaConfig {
             configPath.toFile().getParentFile().mkdirs();
             Files.write(configPath, res.toString().getBytes());
         } catch (IOException ioException) {
-            LOGGER.error(String.format("Write error, using default values for config %s.", configClass), ioException);
+            LOGGER.error("Write error, using default values for config {}.", configClass, ioException);
         }
     }
 
